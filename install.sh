@@ -15,7 +15,7 @@ function add_fix_to_polymc() {
     else
       printf '\033[1m%s\033[0m\n' "Adding glfw fix to PolyMC \"$polymc_path\""
       cd "$polymc_path"
-      mv polymc.cfg polymc.cfg.bak
+      mv polymc.cfg "polymc.cfg-$(date '+%s').bak"
       sed -e 's|^PreLaunchCommand=.*$|PreLaunchCommand=bash "$HOME/.local/share/PolyMC/glfw_fix.sh" "$INST_DIR"|' -e 's/^UseNativeGLFW=false$/UseNativeGLFW=true/' polymc.cfg.bak >polymc.cfg
       if [ ! "$(grep 'UseNativeGLFW=true' polymc.cfg)" ]; then
         echo 'UseNativeGLFW=true' >>polymc.cfg
