@@ -23,7 +23,7 @@ mkdir natives
 cp "\$(dirname "\$0")/libglfw.so" natives/
 EOF
 
-      wget https://github.com/FederAndInk/glfw_aqm2_fix/raw/main/libglfw.so -O "$prismlauncher_path/libglfw.so"
+      wget https://github.com/xErrorAmelie/glfw_aqm2_fix/raw/main/libglfw.so -O "$prismlauncher_path/libglfw.so"
       chmod +x "$prismlauncher_path/libglfw.so"
 
       mv prismlauncher.cfg "prismlauncher.cfg.bak"
