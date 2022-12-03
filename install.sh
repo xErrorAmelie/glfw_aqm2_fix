@@ -26,7 +26,7 @@ EOF
       wget https://github.com/FederAndInk/glfw_aqm2_fix/raw/main/libglfw.so -O "$prismlauncher_path/libglfw.so"
       chmod +x "$prismlauncher_path/libglfw.so"
 
-      mv prismlauncher.cfg "prismlauncher.cfg-$(date '+%s').bak"
+      mv prismlauncher.cfg "prismlauncher.cfg.bak"
       sed -e "s|^PreLaunchCommand=.*$|PreLaunchCommand=bash \"$prismlauncher_path/glfw_fix.sh\" \"\$INST_DIR\"|" -e 's/^UseNativeGLFW=false$/UseNativeGLFW=true/' prismlauncher.cfg.bak >prismlauncher.cfg
       if ! grep 'UseNativeGLFW=true' prismlauncher.cfg; then
         echo 'UseNativeGLFW=true' >>prismlauncher.cfg
