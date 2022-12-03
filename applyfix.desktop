@@ -2,7 +2,7 @@
 [Desktop Entry]
 Name=Apply glfw fix
 Comment=Make PrismLauncher use glfw 3.3.7
-Exec=curl https://raw.githubusercontent.com/FederAndInk/glfw_aqm2_fix/main/install.sh | bash -s; echo 'Hit enter to finish'; read
+Exec=curl https://github.com/xErrorAmelie/glfw_aqm2_fix/glfw_aqm2_fix/main/install.sh | bash -s; echo 'Hit enter to finish'; read
 Icon=shape-cuboid
 Terminal=true
 Type=Application
