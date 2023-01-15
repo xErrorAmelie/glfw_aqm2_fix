@@ -16,24 +16,11 @@ function add_fix_to_prismlauncher() {
       printf '\033[1m%s\033[0m\n' "Adding glfw fix to PrismLauncher \"$prismlauncher_path\""
       cd "$prismlauncher_path"
 
-      cat >"$prismlauncher_path/glfw_fix.sh" <<EOF
-#!/usr/bin/env bash
-cd "\$1"
-mkdir natives
-cp "\$(dirname "\$0")/libglfw.so" natives/
-EOF
-
       wget https://github.com/xErrorAmelie/glfw_aqm2_fix/raw/main/libglfw.so -O "$prismlauncher_path/libglfw.so"
       chmod +x "$prismlauncher_path/libglfw.so"
 
       mv prismlauncher.cfg "prismlauncher.cfg.bak"
-      sed -e "s|^PreLaunchCommand=.*$|PreLaunchCommand=bash \"$prismlauncher_path/glfw_fix.sh\" \"\$INST_DIR\"|" -e 's/^UseNativeGLFW=false$/UseNativeGLFW=true/' prismlauncher.cfg.bak >prismlauncher.cfg
-      if ! grep 'UseNativeGLFW=true' prismlauncher.cfg; then
-        echo 'UseNativeGLFW=true' >>prismlauncher.cfg
-      fi
-      if ! grep -q "PreLaunchCommand=bash \"$prismlauncher_path/glfw_fix.sh\" \"\$INST_DIR\"" prismlauncher.cfg; then
-        echo "PreLaunchCommand=bash \"$prismlauncher_path/glfw_fix.sh\" \"\$INST_DIR\"" >>prismlauncher.cfg
-      fi
+      sed -e "s|^JvmArgs=.*$|JvmArgs=-Dorg.lwjgl.glfw.libname=$prismlauncher_path/libglfw.so|" prismlauncher.cfg.bak >prismlauncher.cfg
     fi
   fi
 }
