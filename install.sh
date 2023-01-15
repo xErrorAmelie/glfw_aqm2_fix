@@ -20,7 +20,7 @@ function add_fix_to_prismlauncher() {
       chmod +x "$prismlauncher_path/libglfw.so"
 
       mv prismlauncher.cfg "prismlauncher.cfg.bak"
-      sed -e "s|^JvmArgs=.*$|JvmArgs=-Dorg.lwjgl.glfw.libname=$prismlauncher_path/libglfw.so|" prismlauncher.cfg.bak >prismlauncher.cfg
+      sed -e "s|^JvmArgs=.*$|JvmArgs=\"-Dorg.lwjgl.glfw.libname=$prismlauncher_path/libglfw.so\"|" prismlauncher.cfg.bak >prismlauncher.cfg
     fi
   fi
 }
